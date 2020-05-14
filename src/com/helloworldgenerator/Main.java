@@ -2,29 +2,24 @@ package com.helloworldgenerator;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        try {
-            FileWriter fileWriter = new FileWriter("helloworld.java");
-
-            fileWriter.write("public class helloworld {\n");
-            fileWriter.write("\n");
-            fileWriter.write("    public static void main(String[] args) {\n");
-            fileWriter.write("        System.out.println(\"Hello World!\");\n");
-            fileWriter.write("\n");
-            fileWriter.write("    }\n");
-            fileWriter.write("\n");
-            fileWriter.write("}");
-
-            fileWriter.close();
-            System.out.println("Your Hello world");
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
+        HelloWorldWriter helloWorldWriter = new HelloWorldWriter();
+        Scanner input  = new Scanner(System.in);
+        System.out.println("Do you wish to say hello to someone in particular? y/n");
+        String helloWho = "";
+        String yn = input.next();
+        if (yn.equals("y")){
+            System.out.println("To whom do you wish to say hello (only letters, no special characters or numbers, please)?");
+            helloWho = input.next();
+        } else {
+            helloWho = "World";
         }
+        helloWorldWriter.writeHelloWorld(helloWho);
 
     }
 
